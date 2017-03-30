@@ -28,12 +28,13 @@ Plugin 'mattn/emmet-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'OrangeT/vim-csharp'
-Plugin 'Shougo/vimproc'
+"Plugin 'Shougo/vimproc'
+Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
 Plugin 'Shougo/unite.vim'
 Plugin 'm2mdas/phpcomplete-extended'
 
 " Colors
-Plugin 'Wutzara/vim-materialtheme'
+Plugin 'zcodes/vim-colors-basic'
 Plugin 'joshdick/onedark.vim'
 Plugin 'sonph/onehalf', {'rtp': 'vim/'}
 Plugin 'raphamorim/lucario'
@@ -140,14 +141,20 @@ set noerrorbells
 syntax enable
 
 let g:hybrid_custom_term_colors = 1
+let g:airline_theme='onehalfdark'
 set background=dark
 colorscheme hybrid
-let g:airline_theme='onehalfdark'
 
 set guioptions-=T
 set guioptions+=e
 set t_Co=256
 set guitablabel=%M\ %t
+set guifont=Monaco\ 12
+
+" gui colors if running iTerm
+if $TERM_PROGRAM =~ "iTerm"
+  set termguicolors
+endif
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
