@@ -85,7 +85,10 @@ source $(brew --prefix)/share/antigen/antigen.zsh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias t='tmux'
+alias tx='tmuxinator'
 
+eval "$(rbenv init -)"
 # Plugins
 antigen bundle tylerreckart/hyperzsh
 antigen bundle zsh-users/zsh-syntax-highlighting
