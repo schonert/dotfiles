@@ -9,35 +9,37 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-surround'
-Plugin 'jordwalke/flatlandia'
-Plugin 'posva/vim-vue'
-"Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline'
-Plugin 'jdkanani/vim-material-theme'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'OrangeT/vim-csharp'
-"Plugin 'Shougo/vimproc'
 Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
 Plugin 'Shougo/unite.vim'
 Plugin 'm2mdas/phpcomplete-extended'
 
+" Syntax
+Plugin 'pangloss/vim-javascript'
+Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'posva/vim-vue'
+
+" Insert mode
+Plugin 'mattn/emmet-vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'ervandew/supertab'
+
 " Colors
-Plugin 'zcodes/vim-colors-basic'
-Plugin 'joshdick/onedark.vim'
+Plugin 'w0ng/vim-hybrid'
 Plugin 'sonph/onehalf', {'rtp': 'vim/'}
-Plugin 'raphamorim/lucario'
+Plugin 'mkarmona/colorsbox'
+Plugin 'albertorestifo/github.vim'
+Plugin 'rhysd/vim-color-spring-night'
 
 call vundle#end()            " required
 
@@ -140,10 +142,12 @@ set noerrorbells
 " Enable syntax highlighting
 syntax enable
 
-let g:hybrid_custom_term_colors = 1
 let g:airline_theme='onehalfdark'
+
 set background=dark
-colorscheme hybrid
+"let g:hybrid_custom_term_colors = 1
+"let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+colorscheme sschonert
 
 set guioptions-=T
 set guioptions+=e
