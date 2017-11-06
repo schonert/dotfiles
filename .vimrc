@@ -27,6 +27,7 @@ Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'posva/vim-vue'
+Plugin 'evidens/vim-twig'
 
 " Insert mode
 Plugin 'mattn/emmet-vim'
@@ -48,6 +49,9 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+filetype plugin indent on
+
 " Sets how many lines of history VIM has to remember
 set history=700
 
@@ -147,7 +151,7 @@ let g:airline_theme='onehalfdark'
 set background=dark
 "let g:hybrid_custom_term_colors = 1
 "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-colorscheme sschonert
+colorscheme ThemerVim
 
 set guioptions-=T
 set guioptions+=e
@@ -157,7 +161,7 @@ set guifont=Monaco\ 12
 
 " gui colors if running iTerm
 if $TERM_PROGRAM =~ "iTerm"
-  set termguicolors
+	set termguicolors
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -188,6 +192,8 @@ set smarttab
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
+
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
 " Linebreak on 500 characters
 set lbr
