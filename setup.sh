@@ -111,7 +111,7 @@ make -f make_mac.mak
 echo ""
 echo "Move theme"
 mkdir ~/.vim/colors
-cp ~/.dofiles/theme/sschonert.vim ~/.vim/colors/sschonert.vim
+cp ~/.dotfiles/theme/sschonert.vim ~/.vim/colors/sschonert.vim
 make -f make_mac.mak
 
 echo ""
