@@ -90,6 +90,8 @@ alias t='tmux'
 alias tx='tmuxinator'
 
 alias S='cd ~/Sites/statum'
+alias SA='cd ~/Sites/statum-api'
+alias IO='cd ~/Sites/statum.io/wp-content/themes/statum.io'
 
 eval "$(rbenv init -)"
 
@@ -99,3 +101,6 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle git
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

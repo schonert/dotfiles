@@ -28,6 +28,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'posva/vim-vue'
 Plugin 'evidens/vim-twig'
+Plugin 'jparise/vim-graphql'
 
 " Insert mode
 Plugin 'mattn/emmet-vim'
@@ -73,6 +74,9 @@ set undofile                " Save undo's after file closes
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
+
+set hidden
+
 
 " Disable word wrap
 set nowrap
