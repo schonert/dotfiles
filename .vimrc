@@ -25,6 +25,7 @@ Plugin 'm2mdas/phpcomplete-extended'
 Plugin 'pangloss/vim-javascript'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'posva/vim-vue'
 Plugin 'evidens/vim-twig'
@@ -155,7 +156,7 @@ let g:airline_theme='onehalfdark'
 set background=dark
 "let g:hybrid_custom_term_colors = 1
 "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-colorscheme ThemerVim
+colorscheme sschonert
 
 set guioptions-=T
 set guioptions+=e
