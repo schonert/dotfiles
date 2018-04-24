@@ -18,13 +18,13 @@ SYM_FILES=( .vimrc .bashrc .zshrc .tmux.conf .gitignore )
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Brew apps
-brew install node git yarn rbenv ruby-build wp-cli composer php imagemagick vim cmake libsass mono
+brew install node git yarn rbenv ruby-build wp-cli composer php imagemagick vim cmake libsass mono postico
 
 ## Mono path
 export MONO_GAC_PREFIX="/usr/local"
 
 # Casks
-brew cask install Google-chrome sourcetree iterm2 firefox postico iconjar postgres slack spotify sketch sequel-pro insomnia craftmanager adobe-creative-cloud spectacle
+brew cask install Google-chrome sourcetree iterm2 firefox iconjar postgres slack spotify sketch sequel-pro insomnia craftmanager adobe-creative-cloud spectacle
 
 yarn global add clausreinke/typescript-tools typescript webpack xbuild
 
