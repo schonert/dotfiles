@@ -11,15 +11,19 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'OrangeT/vim-csharp'
+"Plugin 'OrangeT/vim-csharp'
 Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
-Plugin 'Shougo/unite.vim'
-Plugin 'm2mdas/phpcomplete-extended'
+"Plugin 'Shougo/unite.vim'
+
+" Airline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'KabbAmine/vCoolor.vim'
 
 " Syntax
 Plugin 'pangloss/vim-javascript'
@@ -27,22 +31,19 @@ Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'posva/vim-vue'
+"Plugin 'posva/vim-vue'
 Plugin 'evidens/vim-twig'
 Plugin 'jparise/vim-graphql'
 
 " Insert mode
 Plugin 'mattn/emmet-vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-Plugin 'ervandew/supertab'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'ervandew/supertab'
 
 " Colors
-Plugin 'w0ng/vim-hybrid'
-Plugin 'sonph/onehalf', {'rtp': 'vim/'}
-Plugin 'mkarmona/colorsbox'
-Plugin 'albertorestifo/github.vim'
-Plugin 'rhysd/vim-color-spring-night'
+" Using base16 fork due to https://github.com/chriskempson/base16-vim/issues/197
+Plugin 'danielwe/base16-vim'
 
 call vundle#end()            " required
 
@@ -121,7 +122,7 @@ set ruler
 set number
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " When searching try to be smart about cases
 set smartcase
@@ -151,21 +152,33 @@ set noerrorbells
 " Enable syntax highlighting
 syntax enable
 
-let g:airline_theme='onehalfdark'
-
-set background=dark
+let base16colorspace=256
+set termguicolors
 "let g:hybrid_custom_term_colors = 1
 "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-colorscheme sschonert
+
+"colorscheme base16-unikitty-light
+colorscheme schonert
+set background=dark
+
+if $ITERM_PROFILE != "" && match($ITERM_PROFILE, 'schonert-') == 0
+	exe "set background=".substitute($ITERM_PROFILE, 'schonert-', '', '')
+endif
+
+let g:airline_theme='base16'
+let g:airline#extensions#tabline#enabled = 1
 
 set guioptions-=T
 set guioptions+=e
 set t_Co=256
+"set term=xterm-256color
 set guitablabel=%M\ %t
-set guifont=Monaco\ 12
+set guifont="SF Mono 14"
 
 " gui colors if running iTerm
-if $TERM_PROGRAM =~ "iTerm"
+if exists('+termguicolors')
+	let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
 
@@ -219,9 +232,9 @@ map <C-l> <C-W>l
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\   exe "normal! g`\"" |
+			\ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -232,6 +245,19 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 "set clipboard=autoselect
 set clipboard+=unnamed
 "set mouse=a
+
+""""""""""""""""""""""""""""""
+" => Performance
+""""""""""""""""""""""""""""""
+" disable auto matching parens
+let g:loaded_matchparen=1
+
+" don't render special chars (tabs, trails, ...)
+set nolist
+
+" lazy drawing
+set lazyredraw
+set ttyfast
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -250,7 +276,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 map <Leader>n :NERDTreeToggle<CR>
 
 " YouCompleteMe
- let g:ycm_add_preview_to_completeopt=1
+let g:ycm_add_preview_to_completeopt=1
 
 "CTRLp
 let g:ctrlp_working_path_mode = 'r'
@@ -266,15 +292,13 @@ nnoremap <leader>A :CtrlPBuffer assets<CR>
 nnoremap <leader>d :CtrlP dev<CR>
 nnoremap <leader>D :CtrlPBuffer dev<CR>
 
-autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Returns true if paste mode is enabled
 function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
+	if &paste
+		return 'PASTE MODE  '
+	en
+	return ''
 endfunction
