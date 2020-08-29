@@ -18,7 +18,7 @@ SYM_FILES=( .vimrc .bashrc .zshrc .tmux.conf .gitignore )
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Brew apps
-brew install node git yarn rbenv ruby-build wp-cli composer php imagemagick vim cmake libsass mono
+brew install node git yarn rbenv ruby-build wp-cli composer php imagemagick vim cmake libsass mono antigen
 
 ## Mono path
 export MONO_GAC_PREFIX="/usr/local"
