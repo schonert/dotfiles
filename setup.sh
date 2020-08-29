@@ -74,14 +74,6 @@ eval "$(ssh-agent -s)"
 ssh-add -K $SSH_FILE
 
 # Dotfiles
-echo ""
-echo ""
-echo "Let's go ahead and fetch your dotfiles"
-echo ""
-
-cd ~/
-git clone https://github.com/schonert/dotfiles.git .dotfiles
-
 echo "Creating sym links from your dotfiles"
 echo ""
 echo ""
