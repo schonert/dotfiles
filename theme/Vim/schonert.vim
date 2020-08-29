@@ -3,26 +3,47 @@
   
   if &background == 'dark'
     
-  let s:shade0 = "#06060F"
-  let s:shade1 = "#13232F"
-  let s:shade2 = "#1C3345"
-  let s:shade3 = "#293845"
-  let s:shade4 = "#3F4F5B"
-  let s:shade5 = "#556572"
-  let s:shade6 = "#FFFFFF"
-  let s:shade7 = "#FFFFFF"
-  let s:accent0 = "#DE4F4D"
-  let s:accent1 = "#FFFFFF"
-  let s:accent2 = "#FCFE71"
-  let s:accent3 = "#63F396"
-  let s:accent4 = "#63D1E9"
-  let s:accent5 = "#3F4F5B"
-  let s:accent6 = "#D7A0FF"
-  let s:accent7 = "#FFFFFF"
+  let s:shade0 = "#161522"
+  let s:shade1 = "#353542"
+  let s:shade2 = "#545661"
+  let s:shade3 = "#737681"
+  let s:shade4 = "#9396a0"
+  let s:shade5 = "#b2b6c0"
+  let s:shade6 = "#d1d7df"
+  let s:shade7 = "#f0f7ff"
+  let s:accent0 = "#ee3932"
+  let s:accent1 = "#fcfe71"
+  let s:accent2 = "#34febb"
+  let s:accent3 = "#34febb"
+  let s:accent4 = "#34febb"
+  let s:accent5 = "#5d8cc0"
+  let s:accent6 = "#5d8cc0"
+  let s:accent7 = "#fcfe71"
   
   endif
   
 
+  
+  if &background == 'light'
+    
+  let s:shade0 = "#ffffff"
+  let s:shade1 = "#dededf"
+  let s:shade2 = "#bcbcc0"
+  let s:shade3 = "#9b9ba0"
+  let s:shade4 = "#7a7981"
+  let s:shade5 = "#595861"
+  let s:shade6 = "#373642"
+  let s:shade7 = "#161522"
+  let s:accent0 = "#ee3932"
+  let s:accent1 = "#f91c00"
+  let s:accent2 = "#3eddaa"
+  let s:accent3 = "#3eddaa"
+  let s:accent4 = "#3eddaa"
+  let s:accent5 = "#00149e"
+  let s:accent6 = "#00149e"
+  let s:accent7 = "#f91c00"
+  
+  endif
   
 
   highlight clear
