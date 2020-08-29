@@ -9,24 +9,18 @@ GIT_NAME="Stefan Schonert"
 SSH_EXT=".pub"
 SSH_FILE=~/.ssh/id_rsa
 SSH_PUBLIC=$SSH_FILE$SSH_EXT
-SSH_CONFIG_FILE=~/.ssh/config
 
 # Symbolic files
-SYM_FILES=( .vimrc .bashrc .zshrc .tmux.conf .gitignore )
+SYM_FILES=( .vimrc .bashrc .zshrc .tmux.conf .gitignore Brewfile )
 
 # Install homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Brew apps
-brew install node git yarn rbenv ruby-build wp-cli composer php imagemagick vim cmake libsass mono antigen
+# Run brewfile
+brew tap Homebrew/bundle
+brew bundle
 
-## Mono path
-export MONO_GAC_PREFIX="/usr/local"
-
-# Casks
-brew cask install Google-chrome sourcetree iterm2 firefox postico iconjar postgres slack spotify sketch sequel-pro insomnia craftmanager adobe-creative-cloud spectacle
-
-yarn global add clausreinke/typescript-tools typescript webpack xbuild
+yarn global add xbuild fkill-cli
 
 # GIT!
 echo ""
@@ -88,7 +82,7 @@ done
 echo ""
 echo ""
 echo "Setting up ZSH!"
-curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 
 echo ""
 echo ""
