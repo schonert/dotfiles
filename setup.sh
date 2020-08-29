@@ -87,27 +87,6 @@ done
 
 echo ""
 echo ""
-echo "Going for vundle"
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
-echo ""
-echo "Install YouCompleteMe"
-cd ~/.vim/bundle/YouCompleteMe
-./install.sh --clang-completer --system-libclang --omnisharp-completer
-
-echo ""
-echo "Install vimproc"
-cd ~/.vim/bundle/vimproc.vim
-make -f make_mac.mak
-
-echo ""
-echo "Move theme"
-mkdir ~/.vim/colors
-cp ~/.dotfiles/theme/sschonert.vim ~/.vim/colors/sschonert.vim
-make -f make_mac.mak
-
-echo ""
-echo ""
 echo "Setting up ZSH!"
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
