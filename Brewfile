@@ -11,7 +11,7 @@ brew "ruby-build"
 brew "chruby"
 
 # zsh
-brew zsh
+brew "zsh"
 brew "antigen"
 
 # browsers
