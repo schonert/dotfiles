@@ -5,9 +5,8 @@ GIT_EMAIL="sh@schonert.dk"
 GIT_NAME="Stefan Schonert"
 
 # SSH KEY
-SSH_EXT=".pub"
-SSH_FILE=~/.ssh/id_rsa
-SSH_PUBLIC=$SSH_FILE$SSH_EXT
+GITHUB_SSH_FILE=~/.ssh/id_rsa_github
+GITHUB_SSH_PUBLIC="${GITHUB_SSH_FILE}.pub"
 SSH_CONFIG_FILE=~/.ssh/config
 
 # Symbolic files
@@ -28,8 +27,10 @@ function main() {
 	setup_git
 
 	# SSH
-	if ! test -f $SSH_PUBLIC; then
-		setup_ssh
+	echo $GITHUB_SSH_PUBLIC
+	echo $GITHUB_SSH_FILE
+	if ! test -f $GITHUB_SSH_PUBLIC; then
+		setup_github_ssh
 	fi
 
 	if ! test -f $SSH_CONFIG_FILE; then
@@ -69,7 +70,7 @@ function ensure_ssh_agent() {
 	ssh-add -l &>/dev/null
 	if [ "$?" == 1 ]; then
 		echo "Loading identities to ssh agent"
-		ssh-add -K $SSH_FILE
+		ssh-add -K $GITHUB_SSH_FILE
 	fi
 }
 
@@ -85,11 +86,11 @@ function setup_git() {
 	echo "git name $GIT_NAME"
 }
 
-function setup_ssh() {
+function setup_github_ssh() {
 	echo "Creating new SSH key"
-	ssh-keygen -t rsa -f $SSH_FILE -q -b 4096 -C "$GIT_EMAIL"
-	cat $SSH_PUBLIC
-	pbcopy < $SSH_PUBLIC
+	ssh-keygen -t rsa -f $GITHUB_SSH_FILE -q -b 4096 -C "$GIT_EMAIL"
+	cat $GITHUB_SSH_PUBLIC
+	pbcopy < $GITHUB_SSH_PUBLIC
 
 	echo "Copied and ready to go!"
 	echo "Head to https://github.com/settings/keys and add it!"
@@ -100,10 +101,12 @@ function create_ssh_config() {
 	echo $SSH_CONFIG_FILE
 
 cat > $SSH_CONFIG_FILE <<EOF
-Host *
+Host github.com
+ IgnoreUnknown AddKeysToAgent,UseKeychain
  AddKeysToAgent yes
  UseKeychain yes
- IdentityFile $SSH_FILE
+ PreferredAuthentications publickey
+ IdentityFile $GITHUB_SSH_FILE
 EOF
 }
 
