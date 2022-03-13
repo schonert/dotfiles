@@ -3,47 +3,43 @@ tap "homebrew/cask"
 # install/update deps
 brew "node"
 brew "git"
-brew "yarn"
 brew "vim"
-
-# ruby
-brew "ruby-build"
-brew "chruby"
 
 # zsh
 brew "zsh"
 brew "antigen"
 
-# browsers
-cask "Google-chrome"
-cask "firefox"
+# ruby
+brew "ruby-build"
+brew "chruby"
+
+# js
+brew "nvm"
+brew "typescript"
 
 # development
-brew "awscli"
-brew "typescript"
-brew "redis"
-
-cask "postgres"
-cask "tableplus"
-cask "alacritty"
-cask "visual-studio-code"
-cask "sourcetree"
 cask "docker"
 
+brew "jesseduffield/lazygit/lazygit"
+brew "lazygit"
+brew "postgresql"
+brew "redis"
+
+cask "iterm2"
+cask "tableplus"
+cask "visual-studio-code"
+
 # design
-cask "iconjar"
 cask "sketch"
 
 # social
 cask "slack"
-cask "spectacle"
+cask "discord"
 
 # productivity
-cask "notion"
-mas "todoist", id: 585829637
+cask "spectacle"
+cask "brave-browser"
 
 # misc
 cask "spotify"
-cask "adguard"
 cask "lastpass"
-cask "fzf"
