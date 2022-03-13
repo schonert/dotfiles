@@ -70,7 +70,7 @@ function ensure_ssh_agent() {
 	ssh-add -l &>/dev/null
 	if [ "$?" == 1 ]; then
 		echo "Loading identities to ssh agent"
-		ssh-add -K $GITHUB_SSH_FILE
+		ssh-add $GITHUB_SSH_FILE
 	fi
 }
 
@@ -88,7 +88,7 @@ function setup_git() {
 
 function setup_github_ssh() {
 	echo "Creating new SSH key"
-	ssh-keygen -t rsa -f $GITHUB_SSH_FILE -q -b 4096 -C "$GIT_EMAIL"
+	ssh-keygen -q -t ed25519 -f $GITHUB_SSH_FILE -C "$GIT_EMAIL"
 	cat $GITHUB_SSH_PUBLIC
 	pbcopy < $GITHUB_SSH_PUBLIC
 
@@ -134,7 +134,7 @@ function install_programs() {
 	brew install mas
 	brew bundle
 
-	yarn global add xbuild fkill-cli
+	npm install -G xbuild fkill-cli
 }
 
 main "$@"
