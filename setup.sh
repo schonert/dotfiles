@@ -43,6 +43,10 @@ function main() {
 		install_zsh
 	fi
 
+	set_defaults
+
+	setup_asdf
+
 	echo "We're all done here!"
 }
 
@@ -135,6 +139,22 @@ function install_programs() {
 	brew bundle
 
 	npm install -G xbuild fkill-cli
+}
+
+function set_defaults() {
+	# Avoid press and hold in vs code
+	defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+}
+
+function setup_asdf() {
+	asdf plugin add ruby
+	asdf install ruby latest
+	asdf global ruby latest
+
+	asdf plugin add nodejs
+	asdf install nodejs latest
+	asdf global nodejs latest
+
 }
 
 main "$@"
