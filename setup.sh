@@ -10,7 +10,7 @@ GITHUB_SSH_PUBLIC="${GITHUB_SSH_FILE}.pub"
 SSH_CONFIG_FILE=~/.ssh/config
 
 # Symbolic files
-SYM_FILES=( .vimrc .bashrc .zshrc .tmux.conf .gitignore Brewfile )
+SYM_FILES=(.vimrc .bashrc .zshrc .tmux.conf .gitignore Brewfile)
 
 function main() {
 
@@ -18,11 +18,13 @@ function main() {
 	create_symlinks
 
 	# Install homebrew
-	if ! command -v brew &> /dev/null; then
+	if ! command -v brew &>/dev/null; then
 		install_brew
 	fi
 
 	install_programs
+
+	install_aws_cli
 
 	setup_git
 
@@ -39,7 +41,7 @@ function main() {
 
 	ensure_ssh_agent
 
-	if ! command -v zsh &> /dev/null; then
+	if ! command -v zsh &>/dev/null; then
 		install_zsh
 	fi
 
@@ -59,13 +61,16 @@ function ensure_ssh_agent() {
 		# Could not open a connection to your authentication agent.
 
 		# Load stored agent connection info.
-		test -r ~/.ssh-agent && \
+		test -r ~/.ssh-agent &&
 			eval "$(<~/.ssh-agent)" >/dev/null
 
 		ssh-add -l &>/dev/null
 		if [ "$?" == 2 ]; then
 			# Start agent and store agent connection info.
-			(umask 066; ssh-agent > ~/.ssh-agent)
+			(
+				umask 066
+				ssh-agent >~/.ssh-agent
+			)
 			eval "$(<~/.ssh-agent)" >/dev/null
 		fi
 	fi
@@ -94,7 +99,7 @@ function setup_github_ssh() {
 	echo "Creating new SSH key"
 	ssh-keygen -q -t ed25519 -f $GITHUB_SSH_FILE -C "$GIT_EMAIL"
 	cat $GITHUB_SSH_PUBLIC
-	pbcopy < $GITHUB_SSH_PUBLIC
+	pbcopy <$GITHUB_SSH_PUBLIC
 
 	echo "Copied and ready to go!"
 	echo "Head to https://github.com/settings/keys and add it!"
@@ -104,7 +109,7 @@ function create_ssh_config() {
 	echo "New SSH config"
 	echo $SSH_CONFIG_FILE
 
-cat > $SSH_CONFIG_FILE <<EOF
+	cat >$SSH_CONFIG_FILE <<EOF
 Host github.com
  IgnoreUnknown AddKeysToAgent,UseKeychain
  AddKeysToAgent yes
@@ -112,6 +117,12 @@ Host github.com
  PreferredAuthentications publickey
  IdentityFile $GITHUB_SSH_FILE
 EOF
+}
+
+function install_aws_cli() {
+	curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+	sudo installer -pkg AWSCLIV2.pkg -target /
+	rm AWSCLIV2.pkg
 }
 
 function create_symlinks() {
@@ -141,19 +152,28 @@ function install_programs() {
 	npm install -G xbuild fkill-cli
 }
 
+
 function set_defaults() {
-	# Avoid press and hold in vs code
-	defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+	defaults write -app Cursor ApplePressAndHoldEnabled -bool false
+	defaults write -app iTerm ApplePressAndHoldEnabled -bool false
+	defaults write -app Terminal ApplePressAndHoldEnabled -bool false
+
+	# Avoid press and hold in VSCode
+	defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
+
+	# Set fastest keyboard repeat rates
+	defaults write -g KeyRepeat -int 2
+	defaults write -g InitialKeyRepeat -int 15
 }
 
 function setup_asdf() {
 	asdf plugin add ruby
 	asdf install ruby latest
-	asdf global ruby latest
+	asdf set ruby latest
 
 	asdf plugin add nodejs
 	asdf install nodejs latest
-	asdf global nodejs latest
+	asdf set nodejs latest
 
 }
 

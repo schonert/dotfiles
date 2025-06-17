@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-tap 'homebrew/cask'
-tap 'shopify/shopify'
-
 # install/update deps
 brew 'vim'
 
@@ -10,40 +7,26 @@ brew 'vim'
 brew 'zsh'
 brew 'antigen'
 
-# js
-brew 'typescript'
-
 # development
-cask 'docker'
-brew 'openssl'
 brew 'asdf' # version manager for node + ruby
-brew "pyenv" # version manager python
-brew "pipx" # python package manager
-brew 'node-builder'
-brew 'shopify-cli'
 
-
-brew 'jesseduffield/lazygit/lazygit'
+tap 'jesseduffield/lazygit'
 brew 'lazygit'
-brew 'postgresql'
-brew 'redis'
 
+tap 'jesseduffield/lazydocker'
+brew 'lazydocker'
 
 cask 'iterm2'
 cask 'tableplus'
-cask 'visual-studio-code'
-
-# design
-cask 'sketch'
+cask 'cursor'
 
 # social
 cask 'slack'
-cask 'discord'
 
 # productivity
-cask 'spectacle'
-cask 'brave-browser'
+cask 'google-chrome'
+cask 'orbstack'
 
 # misc
 cask 'spotify'
-cask 'lastpass'
+cask '1password'
