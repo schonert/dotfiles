@@ -145,8 +145,11 @@ function install_programs() {
 }
 
 function set_defaults() {
-	# Avoid press and hold in cursor
-	defaults write com.cursor.Cursor ApplePressAndHoldEnabled -bool false
+	# Avoid press and hold in Cursor
+	defaults write -app Cursor ApplePressAndHoldEnabled -bool false
+
+	# Avoid press and hold in VSCode
+	defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
 
 	# Reduce keyboard repeat delay
 	defaults write -g KeyRepeat -int 2
