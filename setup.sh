@@ -152,8 +152,8 @@ function set_defaults() {
 	defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
 
 	# Reduce keyboard repeat delay
-	defaults write -g KeyRepeat -int 2
-	defaults write -g InitialKeyRepeat -int 15
+	defaults write -g KeyRepeat -int 3
+	defaults write -g InitialKeyRepeat -int 30
 }
 
 function setup_asdf() {
