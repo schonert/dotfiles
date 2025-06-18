@@ -24,8 +24,8 @@ cask 'cursor'
 cask 'slack'
 
 # productivity
-cask 'spectacle'
 cask 'google-chrome'
+cask 'orbstack'
 
 # misc
 cask 'spotify'
